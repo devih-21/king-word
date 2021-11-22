@@ -35,14 +35,14 @@ def main():
 
         if user_word == PROVINCES_ANSWER[ran_num]:
             points += 5
-            score.configure(text="Điểm: " + str(points))
-            messagebox.showinfo('Hạp lý', "Được của ló, tiếp thôi bro!")
+            score.configure(text="Point: " + str(points))
+            messagebox.showinfo('Good', "Được của ló, tiếp thôi bro!")
             ran_num = randrange(0, (len(PROVINCES_WORD)))
             word.configure(text=PROVINCES_WORD[ran_num])
             get_input.delete(0, END)
             ans_lab.configure(text="")
         else:
-            messagebox.showerror("Nâu nầu", "Xai dồi!")
+            messagebox.showerror("Error", "Xai dồi!")
             get_input.delete(0, END)
 
     def show_answer():
@@ -73,7 +73,7 @@ def main():
     lab_img1.pack(anchor='nw', pady=10, padx=10)
 
     score = Label(
-        text="Điểm: 0",
+        text="Point: 0",
         pady=10,
         bg="#e6fff5",
         fg="#000000",
@@ -98,7 +98,7 @@ def main():
     get_input.pack()
 
     submit = Button(
-        text="Kiểm tra",
+        text="Submit",
         width=18,
         borderwidth=8,
         font=("", 18),
@@ -109,7 +109,7 @@ def main():
     submit.pack(pady=(10, 20))
 
     change = Button(
-        text="Đổi từ",
+        text="Chane Word",
         width=18,
         borderwidth=8,
         fg="#000000",
@@ -120,7 +120,7 @@ def main():
     change.pack()
 
     ans = Button(
-        text="Đáp án (-5 Điểm)",
+        text="Answer",
         width=18,
         borderwidth=8,
         fg="#000000",

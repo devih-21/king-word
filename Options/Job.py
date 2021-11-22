@@ -31,21 +31,21 @@ def main():
         user_word = get_input.get().upper().strip()
         if user_word == JOBS_ANSWER[ran_num]:
             points += 5
-            score.configure(text="Điểm: " + str(points))
-            messagebox.showinfo('Hạp lý', "Được của ló, tiếp thôi bro!")
+            score.configure(text="Point: " + str(points))
+            messagebox.showinfo('Good', "Được của ló, tiếp thôi bro!")
             ran_num = randrange(0, (len(JOBS_WORD)))
             word.configure(text=JOBS_WORD[ran_num])
             get_input.delete(0, END)
             ans_lab.configure(text="")
         else:
-            messagebox.showerror("Nâu nầu", "Xai dồi!")
+            messagebox.showerror("Error", "Xai dồi!")
             get_input.delete(0, END)
 
     def show_answer():
         global points
         if points > 4:
             points -= 5
-            score.configure(text="Điểm:  " + str(points))
+            score.configure(text="Point:  " + str(points))
             time.sleep(0.5)
             ans_lab.configure(text=JOBS_ANSWER[ran_num])
         else:
@@ -95,7 +95,7 @@ def main():
     get_input.pack()
 
     submit = Button(
-        text="Kiểm tra",
+        text="Submit",
         width=18,
         borderwidth=8,
         font=("", 18),
@@ -106,7 +106,7 @@ def main():
     submit.pack(pady=(10,20))
 
     change = Button(
-        text="Đổi từ",
+        text="Change Word",
         width=18,
         borderwidth=8,
         fg="#000000",
@@ -117,7 +117,7 @@ def main():
     change.pack()
 
     ans = Button(
-        text="Đáp án (-5 Điểm)",
+        text="Answer",
         width=18,
         borderwidth=8,
         fg="#000000",

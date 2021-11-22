@@ -13,7 +13,7 @@ def start_main_page():
 
         lab_img1 = Button(
             main_window,
-            text="Chủ đề:",
+            text="Topic:",
             bg='#e6fff5',
             border=0,
             justify='center',
@@ -42,8 +42,8 @@ def start_main_page():
         )
 
         lab_img1.pack(pady=(50, 0),)
-        sel_btn1.pack( pady=(50, 0), )
-        sel_btn2.pack( pady=(50, 0), )
+        sel_btn1.pack(pady=(50, 0), )
+        sel_btn2.pack(pady=(50, 0), )
 
     def show_option():
         start_btn.destroy()
@@ -71,7 +71,7 @@ def start_main_page():
 
     start_btn = Button(
         main_window,
-        text="Chơi thoi",
+        text="Start",
         width=22,
         height=11,
         fg="#000000",
