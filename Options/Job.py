@@ -3,7 +3,7 @@ from random import *
 from tkinter import messagebox
 import time
 
-JOBS_WORD = ["ONGCNA", "SICAB", "SGUIOA", "VGIEAOIN", "CNHAOGNN", "SVIINHEN", "LOACNGO", "SHCONIH", "SHCỌNIH", "SYKU", "NANHIVEN"]
+JOBS_WORD = ["ONGCNA", "SICAB", "SGUIOA", "VGIEAOIN", "CNHAOGNN", "SVIINHEN", "LOACNGO", "SHCONIH", "SYKU", "NANHIVEN"]
 
 JOBS_ANSWER = ["CONG AN", "BAC SI", "GIAO SU", "GIAO VIEN", "CONG NHAN", "SINH VIEN", "LAO CONG", "HOC SINH", "KY SU", "NHAN VIEN"]
 
