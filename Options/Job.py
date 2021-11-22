@@ -1,0 +1,138 @@
+from tkinter import *
+from random import *
+from tkinter import messagebox
+import time
+
+JOBS_WORD = ["ONGCNA", "SICAB", "SGUIOA", "VGIEAOIN", "CNHAOGNN", "SVIINHEN", "LOACNGO", "SHCONIH", "SHCỌNIH", "SYKU", "NANHIVEN"]
+
+JOBS_ANSWER = ["CONG AN", "BAC SI", "GIAO SU", "GIAO VIEN", "CONG NHAN", "SINH VIEN", "LAO CONG", "HOC SINH", "KY SU", "NHAN VIEN"]
+
+ran_num = randrange(0, (len(JOBS_WORD)))
+jumbled_rand_word = JOBS_WORD[ran_num]
+
+points = 0
+
+
+def main():
+    def back():
+        my_window.destroy()
+        import index
+        index.start_main_page()
+
+    def change():
+        global ran_num
+        ran_num = randrange(0, (len(JOBS_WORD)))
+        word.configure(text=JOBS_WORD[ran_num])
+        get_input.delete(0, END)
+        ans_lab.configure(text="")
+
+    def cheak():
+        global points, ran_num
+        user_word = get_input.get().upper().strip()
+        if user_word == JOBS_ANSWER[ran_num]:
+            points += 5
+            score.configure(text="Điểm: " + str(points))
+            messagebox.showinfo('Hạp lý', "Được của ló, tiếp thôi bro!")
+            ran_num = randrange(0, (len(JOBS_WORD)))
+            word.configure(text=JOBS_WORD[ran_num])
+            get_input.delete(0, END)
+            ans_lab.configure(text="")
+        else:
+            messagebox.showerror("Nâu nầu", "Xai dồi!")
+            get_input.delete(0, END)
+
+    def show_answer():
+        global points
+        if points > 4:
+            points -= 5
+            score.configure(text="Điểm:  " + str(points))
+            time.sleep(0.5)
+            ans_lab.configure(text=JOBS_ANSWER[ran_num])
+        else:
+            ans_lab.configure(text='Kiếm 5 điểm rồi quay lại nha :v')
+
+    my_window = Tk()
+    my_window.geometry("450x600+500+150")
+    my_window.resizable(0, 0)
+    my_window.title("Vua Tiếng Việt")
+    my_window.configure(background="#e6fff5")
+
+    img1 = PhotoImage(file="back.png")
+
+    lab_img1 = Button(
+        my_window,
+        image=img1,
+        bg='#e6fff5',
+        border=0,
+        justify='center',
+        command=back,
+    )
+    lab_img1.pack(anchor='nw', pady=10,padx=10)
+
+    score = Label(
+        text="Điểm: 0",
+        pady=10,
+        bg="#e6fff5",
+        fg="#000000",
+        font="Titillium 14 bold"
+    )
+    score.pack(anchor="n")
+
+    word = Label(
+        text=jumbled_rand_word,
+        pady=10,
+        bg="#e6fff5",
+        fg="#000000",
+        font="Titillium  50 bold"
+    )
+    word.pack()
+
+    get_input = Entry(
+        font="none 26 bold",
+        borderwidth=10,
+        justify='center',
+    )
+    get_input.pack()
+
+    submit = Button(
+        text="Kiểm tra",
+        width=18,
+        borderwidth=8,
+        font=("", 18),
+        fg="#000000",
+        bg="#99ffd6",
+        command=cheak,
+    )
+    submit.pack(pady=(10,20))
+
+    change = Button(
+        text="Đổi từ",
+        width=18,
+        borderwidth=8,
+        fg="#000000",
+        bg="#99ffd6",
+        font=("", 18),
+        command=change,
+    )
+    change.pack()
+
+    ans = Button(
+        text="Đáp án (-5 Điểm)",
+        width=18,
+        borderwidth=8,
+        fg="#000000",
+        bg="#99ffd6",
+        font=("", 18),
+        command=show_answer,
+    )
+    ans.pack(pady=(20, 10))
+
+    ans_lab = Label(
+        text="",
+        bg="#e6fff5",
+        fg="#000000",
+        font="Courier 15 bold",
+    )
+    ans_lab.pack()
+
+    my_window.mainloop()
