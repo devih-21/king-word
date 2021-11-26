@@ -41,6 +41,8 @@ def main():
             word.configure(text=PROVINCES_WORD[ran_num])
             get_input.delete(0, END)
             ans_lab.configure(text="")
+            if points >= 30:
+                my_window.destroy()
                 messagebox.showinfo('You win!', "Bạn là nhất!!!")
                 import index
                 index.start_main_page()
