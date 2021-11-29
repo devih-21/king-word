@@ -97,6 +97,7 @@ def main():
         borderwidth=10,
         justify='center',
     )
+    get_input.bind('<Return>', cheak)
     get_input.pack()
 
     submit = Button(
