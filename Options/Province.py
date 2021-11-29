@@ -28,11 +28,9 @@ def main():
         get_input.delete(0, END)
         ans_lab.configure(text="")
 
-    def cheak():
+    def cheak(event=None):
         global points, ran_num
         user_word = get_input.get().upper().strip()
-        print("user_word", user_word, PROVINCES_ANSWER[ran_num])
-
         if user_word == PROVINCES_ANSWER[ran_num]:
             points += 5
             score.configure(text="Point: " + str(points))
@@ -100,6 +98,7 @@ def main():
         borderwidth=10,
         justify='center',
     )
+    get_input.bind('<Return>', cheak)
     get_input.pack()
 
     submit = Button(
