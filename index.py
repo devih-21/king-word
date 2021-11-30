@@ -1,6 +1,7 @@
 from tkinter import *
 from Options import Province, Job
 
+
 def start_main_page():
     def start_game(args):
         main_window.destroy()
@@ -57,7 +58,6 @@ def start_main_page():
     main_window.resizable(0, 0)
     main_window.title("Vua Tiếng Việt")
     main_window.configure(background="#e6fff5")
-    
 
     img1 = PhotoImage(file="back.png")
 

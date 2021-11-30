@@ -99,6 +99,7 @@ def main():
         justify='center',
     )
     get_input.bind('<Return>', cheak)
+    get_input.focus_set()
     get_input.pack()
 
     submit = Button(

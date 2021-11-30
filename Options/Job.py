@@ -3,9 +3,11 @@ from random import *
 from tkinter import messagebox
 import time
 
-JOBS_WORD = ["ONGCNA", "SICAB", "SGUIOA", "VGIEAOIN", "CNHAOGNN", "SVIINHEN", "LOACNGO", "SHCONIH", "SYKU", "NANHIVEN"]
+JOBS_WORD = ["ONGCNA", "SICAB", "SGUIOA", "VGIEAOIN", "CNHAOGNN",
+             "SVIINHEN", "LOACNGO", "SHCONIH", "SYKU", "NANHIVEN"]
 
-JOBS_ANSWER = ["CONG AN", "BAC SI", "GIAO SU", "GIAO VIEN", "CONG NHAN", "SINH VIEN", "LAO CONG", "HOC SINH", "KY SU", "NHAN VIEN"]
+JOBS_ANSWER = ["CONG AN", "BAC SI", "GIAO SU", "GIAO VIEN", "CONG NHAN",
+               "SINH VIEN", "LAO CONG", "HOC SINH", "KY SU", "NHAN VIEN"]
 
 ran_num = randrange(0, (len(JOBS_WORD)))
 jumbled_rand_word = JOBS_WORD[ran_num]
@@ -72,7 +74,7 @@ def main():
         justify='center',
         command=back,
     )
-    lab_img1.pack(anchor='nw', pady=10,padx=10)
+    lab_img1.pack(anchor='nw', pady=10, padx=10)
 
     score = Label(
         text="Điểm: 0",
@@ -98,6 +100,7 @@ def main():
         justify='center',
     )
     get_input.bind('<Return>', cheak)
+    get_input.focus_set()
     get_input.pack()
 
     submit = Button(
@@ -109,7 +112,7 @@ def main():
         bg="#99ffd6",
         command=cheak,
     )
-    submit.pack(pady=(10,20))
+    submit.pack(pady=(10, 20))
 
     change = Button(
         text="Change Word",
