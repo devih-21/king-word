@@ -1,47 +1,82 @@
 from tkinter import *
-from random import *
 from tkinter import messagebox
 import time
+import random
 
-JOBS_WORD = ["ONGCNA", "SICAB", "SGUIOA", "VGIEAOIN", "CNHAOGNN", "SVIINHEN", "LOACNGO", "SHCONIH", "SYKU", "NANHIVEN"]
+JOBS_WORD = ["ONGCNA", "SICAB", "SGUIOA", "VGIEAOIN", "CNHAOGNN",
+             "SVIINHEN", "LOACNGO", "SHCONIH", "SYKU", "NANHIVEN"]
 
-JOBS_ANSWER = ["CONG AN", "BAC SI", "GIAO SU", "GIAO VIEN", "CONG NHAN", "SINH VIEN", "LAO CONG", "HOC SINH", "KY SU", "NHAN VIEN"]
+JOBS_ANSWER = ["CONG AN", "BAC SI", "GIAO SU", "GIAO VIEN", "CONG NHAN",
+               "SINH VIEN", "LAO CONG", "HOC SINH", "KY SU", "NHAN VIEN"]
 
-ran_num = randrange(0, (len(JOBS_WORD)))
-jumbled_rand_word = JOBS_WORD[ran_num]
-
+var = 0
+ran_num_array = random.sample([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10)
+ran_num_array.append(10)
+ran_num = ran_num_array[var]
 points = 0
 
 
 def main():
     def back():
+        global var, ran_num_array
+        var = 0
+        ran_num_array = random.sample([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10)
         my_window.destroy()
         import index
         index.start_main_page()
 
     def change():
         global ran_num
-        ran_num = randrange(0, (len(JOBS_WORD)))
+        global var,  ran_num_array
+        var += 1
+        if var == 10 and points >= 30:
+            var = 0
+            ran_num_array = random.sample([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10)
+            my_window.destroy()
+            messagebox.showinfo('You win!', "Bạn là nhất!!!")
+            import index
+            index.start_main_page()
+        elif var == 10 and points < 30:
+            var = 0
+            ran_num_array = random.sample([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10)
+            my_window.destroy()
+            messagebox.showinfo('You loss!', "Bạn như lốp xe vậy, hơi non!!!")
+            import index
+            index.start_main_page()
+        ran_num = ran_num_array[var]
         word.configure(text=JOBS_WORD[ran_num])
         get_input.delete(0, END)
         ans_lab.configure(text="")
 
     def cheak(event=None):
-        global points, ran_num
+        global points, ran_num, var, ran_num_array
         user_word = get_input.get().upper().strip()
         if user_word == JOBS_ANSWER[ran_num]:
             points += 5
             score.configure(text="Point: " + str(points))
             messagebox.showinfo('Good', "Được của ló, tiếp thôi bro!")
-            ran_num = randrange(0, (len(JOBS_WORD)))
-            word.configure(text=JOBS_WORD[ran_num])
-            get_input.delete(0, END)
-            ans_lab.configure(text="")
-            if points >= 30:
+            var += 1
+            if var == 10 and points >= 30:
+                var = 0
+                ran_num_array = random.sample(
+                    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10)
                 my_window.destroy()
                 messagebox.showinfo('You win!', "Bạn là nhất!!!")
                 import index
                 index.start_main_page()
+            elif var == 10 and points < 30:
+                var = 0
+                ran_num_array = random.sample(
+                    [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], 10)
+                my_window.destroy()
+                messagebox.showinfo(
+                    'You loss!', "Bạn như lốp xe vậy, hơi non!!!")
+                import index
+                index.start_main_page()
+            ran_num = ran_num_array[var]
+            word.configure(text=JOBS_WORD[ran_num])
+            get_input.delete(0, END)
+            ans_lab.configure(text="")
         else:
             messagebox.showerror("Error", "Xai dồi!")
             get_input.delete(0, END)
@@ -61,7 +96,6 @@ def main():
     my_window.resizable(0, 0)
     my_window.title("Vua Tiếng Việt")
     my_window.configure(background="#e6fff5")
-
     img1 = PhotoImage(file="back.png")
 
     lab_img1 = Button(
@@ -72,7 +106,7 @@ def main():
         justify='center',
         command=back,
     )
-    lab_img1.pack(anchor='nw', pady=10,padx=10)
+    lab_img1.pack(anchor='nw', pady=10, padx=10)
 
     score = Label(
         text="Điểm: 0",
@@ -84,7 +118,7 @@ def main():
     score.pack(anchor="n")
 
     word = Label(
-        text=jumbled_rand_word,
+        text=JOBS_WORD[ran_num],
         pady=10,
         bg="#e6fff5",
         fg="#000000",
@@ -98,6 +132,7 @@ def main():
         justify='center',
     )
     get_input.bind('<Return>', cheak)
+    get_input.focus_set()
     get_input.pack()
 
     submit = Button(
@@ -109,7 +144,7 @@ def main():
         bg="#99ffd6",
         command=cheak,
     )
-    submit.pack(pady=(10,20))
+    submit.pack(pady=(10, 20))
 
     change = Button(
         text="Change Word",
